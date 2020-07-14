@@ -6,13 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2020 | Hexo</title>
+  <title>PSO粒子群优化算法 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/2020/index.html">
+  <meta name="description" content="PSO粒子群优化算法PSO粒子群优化算法，属于原启发式算法，模仿鸟群觅食时的群体经验分享的过程，找到所求函数的极值。 以具体的程序为例，解释该算法的流程和思想。 核心移步公式： ​    鸟到达的下一个点坐标受到三个条件影响：飞行速度，个人最佳解（个人经验），群体最佳解（群体经验） 1234x1 &#x3D; c1*np.random.random()*(个人最佳解坐标 - 当前坐标) #个人经验x2 &#x3D;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PSO粒子群优化算法">
+<meta property="og:url" content="http://yoursite.com/2020/07/14/PSO%E7%B2%92%E5%AD%90%E7%BE%A4%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="PSO粒子群优化算法PSO粒子群优化算法，属于原启发式算法，模仿鸟群觅食时的群体经验分享的过程，找到所求函数的极值。 以具体的程序为例，解释该算法的流程和思想。 核心移步公式： ​    鸟到达的下一个点坐标受到三个条件影响：飞行速度，个人最佳解（个人经验），群体最佳解（群体经验） 1234x1 &#x3D; c1*np.random.random()*(个人最佳解坐标 - 当前坐标) #个人经验x2 &#x3D;">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-07-14T13:10:13.378Z">
+<meta property="article:modified_time" content="2020-07-14T13:10:13.369Z">
 <meta property="article:author" content="cdcodin">
 <meta name="twitter:card" content="summary">
   
@@ -150,103 +154,191 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-PSO粒子群优化算法" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      PSO粒子群优化算法
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/07/14/PSO%E7%B2%92%E5%AD%90%E7%BE%A4%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95/" class="archive-article-date">
+
+        
+        <a href="/2020/07/14/PSO%E7%B2%92%E5%AD%90%E7%BE%A4%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95/" class="archive-article-date">
   	<time datetime="2020-07-14T13:10:13.378Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-14</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/07/14/PSO%E7%B2%92%E5%AD%90%E7%BE%A4%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95/">PSO粒子群优化算法</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="PSO粒子群优化算法"><a href="#PSO粒子群优化算法" class="headerlink" title="PSO粒子群优化算法"></a>PSO粒子群优化算法</h4><p>PSO粒子群优化算法，属于原启发式算法，模仿鸟群觅食时的群体经验分享的过程，找到所求函数的极值。</p>
+<p>以具体的程序为例，解释该算法的流程和思想。</p>
+<p>核心移步公式：</p>
+<p>​    鸟到达的下一个点坐标受到三个条件影响：飞行速度，个人最佳解（个人经验），群体最佳解（群体经验）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">x1 = c1*np.random.random()*(个人最佳解坐标 - 当前坐标) <span class="comment">#个人经验</span></span><br><span class="line">x2 = c2*np.random.random()*(G[j] - 当前坐标) <span class="comment">#群体经验</span></span><br><span class="line">移动矢量 = W_k * 当前速度 + x1 + x2 <span class="comment">#速度、个人经验、群体经验三者共同决定移动的矢量</span></span><br><span class="line">下一次的坐标 = 当前坐标 + 移动矢量</span><br></pre></td></tr></table></figure>
 
-        <div class="article-info info-on-right">
-          
-          
+<p>​    其中，c1是认知参数，即受个人经验影响的程度（系数），c2是社群参数，即受群体经验影响程度（系数），再计算移动量时还使用了np.random.random()函数，使矢量不只能按照原来的方向进行伸缩，而是能有机会到达以该矢量线段为对角线的矩形中的任意点。</p>
+<p><a href="https://github.com/cdcodin/Artificial-Intelligence/blob/9c9afcf8b26245fcf1ca4acbb5da243d7e5e2db9/PSO.py" target="_blank" rel="noopener">PSO算法例子</a></p>
+<ol>
+<li><p>目标函数和定义域</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">X_UPPER = np.array([<span class="number">100</span>,<span class="number">100</span>]) <span class="comment">#决策变量上界，示例中的函数变量有两个，所以上下界都有两个，可以看作是两个变量x,y的定义域</span></span><br><span class="line">X_LOWER = np.array([<span class="number">0</span>,<span class="number">0</span>]) <span class="comment">#决策变量下界</span></span><br><span class="line">target = [<span class="number">30</span>,<span class="number">50</span>]</span><br><span class="line"><span class="comment">#目标函数 能量函数E</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">E</span><span class="params">(params)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> (params[<span class="number">0</span>] - <span class="number">30</span>)**<span class="number">2</span> + (params[<span class="number">1</span>] - <span class="number">50</span>)**<span class="number">2</span></span><br></pre></td></tr></table></figure>
 
+
+
+</li>
+</ol>
+<ol start="2">
+<li><p>各种参数初始化</p>
+<p>D: 变量的个数，即问题的维度 </p>
+<p>m: 粒子总数，就是你要用多少只鸟帮你找最佳点</p>
+<p>W: 速度权重，类似于鸟飞行过程中的惯性大小，决定当前速度对下一个到达点的影响程度。这里初始权重设置的比较大，让鸟在初始时尽可能扩大搜寻的范围，将鸟群分散在最佳点周围；随着迭代的进行，该权重逐渐减小，使鸟移动到下一个点受速度影响减少，而受到经验的影响相对较大。</p>
+<p>V_max: 粒子移动的最大速度，限制最大速度是为了使粒子更快地收敛。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">D = <span class="number">2</span> <span class="comment">#维度</span></span><br><span class="line">m = <span class="number">30</span> <span class="comment">#粒子总数</span></span><br><span class="line">W_init = <span class="number">0.9</span> <span class="comment">#初始权重</span></span><br><span class="line">W_final = <span class="number">0.4</span> <span class="comment">#终止权重</span></span><br><span class="line">c1 = <span class="number">1</span> <span class="comment">#认知参数</span></span><br><span class="line">c2 = <span class="number">2</span> <span class="comment">#社群参数</span></span><br><span class="line">V_init = <span class="number">1</span> <span class="comment">#初始参数</span></span><br><span class="line">V_max = <span class="number">30</span> <span class="comment">#最大移动速度</span></span><br><span class="line"><span class="comment"># V_min = 0 #最小移动速度不设置，为了最终搜索的精度不被限制。</span></span><br><span class="line">Iter_final = <span class="number">100</span> <span class="comment">#设置迭代的次数，范围为 [100,500]，改示例中只需要60次左右就可完成</span></span><br><span class="line">W_k = W_init <span class="comment">#权重</span></span><br><span class="line">V_k = np.ones([m,D]) * V_init <span class="comment">#产生速度</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>随机产生一组数据为目前解，并将计算适合值放在最后一列</p>
+<p>这时x_total是一个30行，3列的矩阵，第一、二列分别是两个维度上的值（相当于横、纵坐标），第三列是改行前两个参数下的适合值。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x_total = np.random.rand(m,D+<span class="number">1</span>)  <span class="comment">#目前解</span></span><br><span class="line">P = x_total <span class="comment">#初始化个人最佳解为都为目前解</span></span><br><span class="line">G <span class="comment">#初始化全局最佳解为目前解中适合值最小的（题目中要求函数的最小值）</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>开始迭代</p>
+<p>迭代过程：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> k <span class="keyword">in</span> range(Iter_final): <span class="comment">#决定迭代的次数</span></span><br><span class="line">        <span class="comment">#速度计算</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(m):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span>  range(D):</span><br><span class="line">                x1 = c1*np.random.random()*(P[i][j] - x_total[i][j]) <span class="comment">#个人经验影响</span></span><br><span class="line">                x2 = c2*np.random.random()*(G[j] - x_total[i][j]) <span class="comment">#群体经验影响</span></span><br><span class="line">                V_k[i][j] = W_k * V_k[i][j] + x1 + x2 <span class="comment">#上两项加上现在的速度影响得到需要移动的速度矢量</span></span><br><span class="line">                <span class="comment">#判断速度是否超过最大速度，如果超出则将其重置为最大速度</span></span><br><span class="line">                <span class="keyword">if</span> V_k[i][j] &gt; V_max:</span><br><span class="line">                    V_k[i][j] = V_max</span><br><span class="line">                <span class="keyword">elif</span> V_k[i][j] &lt; -V_max:</span><br><span class="line">                    V_k[i][j] = -V_max</span><br><span class="line"></span><br><span class="line">                <span class="comment">#移步，让当前点加上移动矢量，到达新的点</span></span><br><span class="line">                x_total[i][j] = x_total[i][j] + V_k[i][j]</span><br><span class="line">                <span class="comment">#判断新的点每个维度是否超出边界，如果超出，则将其设置为边界值，并将速度重置为初始速度</span></span><br><span class="line">                <span class="keyword">if</span> x_total[i][j] &gt; X_UPPER[j]:</span><br><span class="line">                    x_total[i][j] = X_UPPER[j]</span><br><span class="line">                    V_k[i][j] = V_init</span><br><span class="line">                <span class="keyword">elif</span> x_total[i][j] &lt; X_LOWER[j]:</span><br><span class="line">                    x_total[i][j] = X_LOWER[j]</span><br><span class="line">                    V_k[i][j] = V_init</span><br><span class="line">     </span><br><span class="line">	<span class="comment">#调用函数计算新的目前解，个人最佳解，群体最佳解</span></span><br><span class="line"> 	x_total,P,G = calculate(x_total,P,G)</span><br><span class="line"></span><br><span class="line"> 	<span class="comment">#修正权重W</span></span><br><span class="line"> 	W_k = W_init - (k/Iter_final)*(W_init - W_final)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>迭代结束后即可得到最终的群体最佳解</p>
+<p>可视化过程可以参考<a href="https://github.com/cdcodin/Artificial-Intelligence" target="_blank" rel="noopener">我的github仓库</a>,其中有平面和3D的绘图过程，源码为PSO.py和PSO2.py。</p>
+</li>
+</ol>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/07/14/PSO%E7%B2%92%E5%AD%90%E7%BE%A4%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/06/02/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" class="archive-article-date">
-  	<time datetime="2020-06-02T04:26:02.060Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-02</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2020/06/02/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">hexo博客搭建</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/06/02/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">hexo博客搭建</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/06/02/hello-world/" class="archive-article-date">
-  	<time datetime="2020-06-02T03:29:24.629Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-02</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/06/02/hello-world/">Hello World</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
 
 
           </div>
@@ -269,8 +361,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
